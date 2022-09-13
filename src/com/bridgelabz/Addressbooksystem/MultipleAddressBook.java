@@ -28,15 +28,17 @@ public class MultipleAddressBook {
 		System.out.println("2.View Address Book List");
 		System.out.println("3.Search Person By City");
 		System.out.println("4.Search Person By State");
-		System.out.println("5.Quit");
-		System.out.println("Enter choice from 1 and 5");
+		System.out.println("5.Count Contacts by city");
+		System.out.println("6.Count Contacts by State");
+		System.out.println("7.Quit");
+		System.out.println("Enter choice from 1 and 7");
 		int choice=sc.nextInt();
 		return choice;
 	}
 	public void addNewAddressBook() {
 		System.out.println("Enter Name For Address Book");
-		String adbName=sc.next();
-		adbName=adbName.toLowerCase();
+		String aName=sc.next();
+		aName=aName.toLowerCase();
 		Contacts cc=addressb.addContact();
 		addressBookMap.put(aName, addressb);
 		if(cityMap.containsKey(cc.city)) {
@@ -97,6 +99,16 @@ public class MultipleAddressBook {
 			if(stateMap.containsKey(state)) {
 				MultipleContacts list=stateMap.get(state);
 				list.showAllContacts();
+			}
+		}
+		public void countByCity() {
+			for(Map.Entry<String,MultipleContacts> m:cityMap.entrySet()) {
+				System.out.println("Count for "+m.getKey()+" is "+m.getValue().contactArrayList.size());
+			}
+		}
+		public void countByState() {
+			for(Map.Entry<String,MultipleContacts> m:stateMap.entrySet()) {
+				System.out.println("Count for "+m.getKey()+" is "+m.getValue().contactArrayList.size());
 			}
 		}
 	public static void main(String[] args) {
